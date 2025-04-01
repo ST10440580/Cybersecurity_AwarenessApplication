@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cybersecurity_AwarenessApplication", "Cybersecurity_AwarenessApplication\Cybersecurity_AwarenessApplication.csproj", "{6385598B-53F8-4B18-AC6C-1492DE07CA31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6385598B-53F8-4B18-AC6C-1492DE07CA31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6385598B-53F8-4B18-AC6C-1492DE07CA31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6385598B-53F8-4B18-AC6C-1492DE07CA31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6385598B-53F8-4B18-AC6C-1492DE07CA31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C82A7CB1-AC78-46AE-9E8F-E8CC307ACC91}
+	EndGlobalSection
+EndGlobal
