@@ -22,7 +22,7 @@ namespace Cybersecurity_AwarenessApplication
             Console.ResetColor();
 
             //call image display class
-           // new image_display() { };
+           new image_display() { };
 
             //call response system class
             new response_system() { };
