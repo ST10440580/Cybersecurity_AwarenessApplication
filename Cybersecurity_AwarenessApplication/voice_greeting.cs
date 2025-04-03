@@ -9,26 +9,26 @@ namespace Cybersecurity_AwarenessApplication
         public voice_greeeting()
         {
             // Get the base directory where the application is running to ensure image displays on other devi
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string Main_voice_directoy = AppDomain.CurrentDomain.BaseDirectory;
 
-            // Path to the audio file, assuming it's in the same directory as the executable
-            string audioFilePath = Path.Combine(baseDirectory, "voicegreeting.wav");
+            // Path to the audio file by combining main_voice_directory with the actual wav
+            string voice_greeting_path = Path.Combine(Main_voice_directoy, "voicegreeting.wav");
 
-            // Print the full audio path for debugging purposes
-            Console.WriteLine("Audio file path: " + audioFilePath);
+            // Prints out the full audio path of the voice greeting
+            Console.WriteLine("Audio file path: " + voice_greeting_path);
 
-            // Call the method to play the audio
-            PlayIntro(audioFilePath);
+            // Method is called to be implemented
+            PlayIntro(voice_greeting_path);
         }
 
-        private void PlayIntro(string fullAudioPath)
+        private void PlayIntro(string audio_path)
         {
             try
             {
                 // Check if the audio file exists before trying to play it to assist in debugging
-                if (File.Exists(fullAudioPath))
+                if (File.Exists(audio_path))
                 {
-                    using (SoundPlayer player = new SoundPlayer(fullAudioPath))
+                    using (SoundPlayer player = new SoundPlayer(audio_path))
                     {
                         player.PlaySync();  // Play the audio
                     }
@@ -36,13 +36,13 @@ namespace Cybersecurity_AwarenessApplication
                 else
                 {
                     // If the file doesn't exist, log an error message
-                    Console.WriteLine("Error: The audio file does not exist at " + fullAudioPath);
+                    Console.WriteLine("Error:Your audio cannot be played at this following directory as it does not exist:" + audio_path);
                 }
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                // Catch and log any exceptions
-                Console.WriteLine("Error playing the audio: " + e.Message);
+               
+                Console.WriteLine("Audio could not be played: " + error.Message);
             }
         }
     }

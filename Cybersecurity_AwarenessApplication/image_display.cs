@@ -12,25 +12,25 @@ namespace Cybersecurity_AwarenessApplication
        public image_display()
         {
             // Get the base directory of the application
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string logo_directory = AppDomain.CurrentDomain.BaseDirectory;
 
             // Path to the image, assuming it's in the same directory as the executable
-            string imagePath = Path.Combine(baseDirectory, "Cyber.jpg");
+            string logo_path = Path.Combine(logo_directory, "Cyber.jpg");
 
             // Width and height of the resized image
             int width = 150;
             int height = 60;
 
             // Check if the image exists
-            if (!File.Exists(imagePath))
+            if (!File.Exists(logo_path))
             {
-                Console.WriteLine("Error: Image file not found at " + imagePath);
+                Console.WriteLine("Error: Image file not found at " + logo_path);
                 return;
             }
 
             try
             {
-                using (Bitmap bitmap = new Bitmap(imagePath))
+                using (Bitmap bitmap = new Bitmap(logo_path))
                 {
                     // Resize and convert the image to ASCII
                     Bitmap resized = ResizeImage(bitmap, width, height);

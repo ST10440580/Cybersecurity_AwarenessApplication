@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace Cybersecurity_AwarenessApplication
 {
@@ -7,31 +8,33 @@ namespace Cybersecurity_AwarenessApplication
     {
         public response_system()
         {
+            // Initialize the chatbot name
+            string chatbot = "Chatbot:";
             
 
-            // Initialize the chatbot name
 
-            string chatbot = "Chatbot";
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("+-----------------------------------------------------------------------------------+\r\n| ____   ____   ____   ____   ____   ____   ____   ____   ____   ____   ____   ____ |\r\n|)____( )____( )____( )____( )____( )____( )____( )____( )____( )____( )____( )____(|\r\n+-----------------------------------------------------------------------------------+");
+            //Borders and Welcome ASCII ART
+            Console.WriteLine("============================================================================================================================================================");
+            Console.WriteLine("============================================================================================================================================================");
+            Console.WriteLine("██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗\r\n██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝\r\n██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  \r\n██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  \r\n╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗\r\n ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝");
             Console.ResetColor();
 
 
-            Console.ForegroundColor = ConsoleColor.Magenta;
             // Prompt user for their name
-            Console.WriteLine($"{chatbot}:Please enter your name:");
+            Console.WriteLine($"{chatbot}Please enter your name");
             string name = Console.ReadLine();
-            Console.ResetColor();
+          
 
-            Console.WriteLine($"{chatbot}: Welcome to the chatbot, {name}!");
+            Console.WriteLine($"{chatbot} Welcome to the chatbot, {name}!");
            //For spacing
             Console.WriteLine("          ");
             
             // Initialize the ArrayList with questions and answers
-            ArrayList chatbotResponses = new ArrayList()
+            ArrayList chatbot_answers = new ArrayList()
             {
-                new string[] { "phishing",$"Phishing is a form of online fraud in which hackers attempt to get your private information such as passwords, credit cards, or bank account data." },
+                new string[] { "phishing",$"Phishing is a form of online fraud in which hackers attempt to get your private information such as passwords, credit cards, or bank account data and other types of sensitive data." },
                 new string[] { "password",$"Use strong, unique passwords for each account. A password manager can help generate and store them securely." },
                 new string[] { "safe browsing",$"Always check for HTTPS, avoid suspicious websites, and never download files from unknown sources." },
                 new string[] { "how are you",$"I'm good, thank you for asking {name}!" },
@@ -55,36 +58,45 @@ namespace Cybersecurity_AwarenessApplication
                 new string[] { "who am i",$"Your name is {name} as you mentioned." },
             };
 
+
+            Console.WriteLine($"{chatbot}Please ask questions related to the following topics:\n1.Passwords,\n2.Safe Browsing or \n3.Phishing.\nIf you would like to continue asking the chatbot questions you may carry on asking more questions and if not type in exit to leave the program.");
+         
+            //Border acting as section breaker
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("============================================================================================================================================================");
+            Console.WriteLine("============================================================================================================================================================");
+            Console.ResetColor();
+
+
+
+
+
+
             // Loop for the chatbot to respond to user input
             while (true)
             { 
-                //Used for spacing
-                Console.WriteLine("          ");
-                
-                Console.WriteLine($"{chatbot}:Please ask questions related to the following topics:1 Passwords 2.Safe Browsing 3.Phishing or type in exit to leave the program.");
-               //Border acting as section breaker
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("+-----------------------------------------------------------------------------------+\r\n| ____   ____   ____   ____   ____   ____   ____   ____   ____   ____   ____   ____ |\r\n|)____( )____( )____( )____( )____( )____( )____( )____( )____( )____( )____( )____(|\r\n+-----------------------------------------------------------------------------------+");
-                Console.ResetColor();
-
                 // Capture user input with feedback
-                Console.ForegroundColor = ConsoleColor.Green;
                 string userResponse = capture_user_response(name);
-                Console.ResetColor();
+               
+
+
 
                 if (userResponse.ToLower() == "exit")
-                {          
-                    Console.WriteLine($"{chatbot}:Thank you for using our chatbot{name} have yourself a splendid day! ");
+                {
+
+                    Console.WriteLine($"{chatbot}Thank you for using our chatbot {name} have yourself a splendid day! ");
+                    
+                  
                     break;
                 }
 
                 // Used to serach for the responses from users input
                 bool found = false;
-                foreach (string[] response in chatbotResponses)
+                foreach (string[] response in chatbot_answers)
                 {
                     if (userResponse.ToLower().Contains(response[0].ToLower()))
                     {
-                        Console.WriteLine($"{chatbot}: {response[1]}");
+                        Console.WriteLine($"{chatbot} {response[1]}");
                         found = true;
                         break;
                     }
@@ -93,33 +105,53 @@ namespace Cybersecurity_AwarenessApplication
                 if (!found)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{chatbot}:Sorry {name}, I didn't quite get that. Please ask about passwords, phishing, or safe browsing.\U000026A0 ");
+                    Console.WriteLine($"{chatbot}Sorry {name}, I didn't quite get that. Please ask about passwords, phishing, or safe browsing. ");
                     Console.ResetColor();
                 }
             }
         }
 
+       
+
+
+
+            
+            
+        
+    
+
+
+        
+
+
+
+
         // Method to capture user response with input typing effect
         private string capture_user_response(string name)
         {
             string input = "";
-            ConsoleKeyInfo key;
+            ConsoleKeyInfo userinput;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write($" {name}: ");
+            Console.ResetColor();
+            
+           
+
+            //Used to read key without displaying on screen for better structure of the code
             do
             {
-                key = Console.ReadKey(intercept: true);  // Read key without displaying it
-                if (key.Key == ConsoleKey.Backspace && input.Length > 0)
+                userinput = Console.ReadKey(intercept: true);  // Read key without displaying it
+                if (userinput.Key == ConsoleKey.Backspace && input.Length > 0)
                 {
-                    input = input.Substring(0, input.Length - 1);  // Handle backspace
-                    Console.Write("\b \b");  // Erase last character on screen
+                    input = input.Substring(0, input.Length - 1);  
+                    Console.Write("\b \b");  // Erases the last characters/character on screen for better structure of the program
                 }
-                else if (key.Key != ConsoleKey.Enter)  // Don't add Enter key to input
+                else if (userinput.Key != ConsoleKey.Enter) 
                 {
-                    input += key.KeyChar;  // Add typed character to input
-                    Console.Write(key.KeyChar);  // Display character on screen
+                    input += userinput.KeyChar; 
+                    Console.Write(userinput.KeyChar);  // Display character on screen
                 }
-            } while (key.Key != ConsoleKey.Enter);  // Stop when Enter key is pressed
-
+            } while (userinput.Key != ConsoleKey.Enter); 
             Console.WriteLine();  // Move to the next line after the user presses Enter
             return input;
         }
