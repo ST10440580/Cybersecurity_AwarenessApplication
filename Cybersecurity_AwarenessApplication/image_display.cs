@@ -5,40 +5,34 @@ using System.IO;
 
 namespace Cybersecurity_AwarenessApplication
 {
-    internal class image_display
+    public class image_display
     {
         static readonly string asciiChars = "&=:* ";
 
-
-        public image_display()
+       public image_display()
         {
-            //file path for image used in directory
-            string path_logo = AppDomain.CurrentDomain.BaseDirectory;
+            // Get the base directory of the application
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
+            // Path to the image, assuming it's in the same directory as the executable
+            string imagePath = Path.Combine(baseDirectory, "Cyber.jpg");
 
-            //
-            string new_path_logo = path_logo.Replace("bin\\Debug\\", "");
+            // Width and height of the resized image
+            int width = 150;
+            int height = 60;
 
-
-
-
-            string full_logo_path = Path.Combine(new_path_logo, "ASCI ART 2.jpeg");
-            int width = 150;//width of the image
-            int height = 60; // height of the image
-
-
-
-            //Test if displaying the image will execute smoothly
-            if (!File.Exists(full_logo_path))
+            // Check if the image exists
+            if (!File.Exists(imagePath))
             {
-                Console.WriteLine("Error: Image file not found at " + full_logo_path);
+                Console.WriteLine("Error: Image file not found at " + imagePath);
                 return;
             }
 
             try
             {
-                using (Bitmap bitmap = new Bitmap(full_logo_path))
+                using (Bitmap bitmap = new Bitmap(imagePath))
                 {
+                    // Resize and convert the image to ASCII
                     Bitmap resized = ResizeImage(bitmap, width, height);
                     ConvertToAscii(resized);
                 }
@@ -48,19 +42,20 @@ namespace Cybersecurity_AwarenessApplication
                 Console.WriteLine($"Error loading image: {ex.Message}");
             }
         }
-        //Method for resizing image
+
+        // Method to resize the image
         static Bitmap ResizeImage(Bitmap original, int width, int height)
         {
             Bitmap resized = new Bitmap(width, height);
-            using (Graphics picture_graphics = Graphics.FromImage(resized))
+            using (Graphics graphics = Graphics.FromImage(resized))
             {
-                //InterpolationMode to make the logo appear wider and clearer.
-                picture_graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                picture_graphics.DrawImage(original, new Rectangle(0, 0, width, height));
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(original, new Rectangle(0, 0, width, height));
             }
             return resized;
         }
-        //
+
+        // Method to convert the image to ASCII
         static void ConvertToAscii(Bitmap image)
         {
             for (int y = 0; y < image.Height; y++)
@@ -77,22 +72,21 @@ namespace Cybersecurity_AwarenessApplication
             Console.ResetColor();
         }
 
+        // Method to map a pixel to an ASCII character
         static char MapPixelToChar(Color color)
         {
-            //Enhance gray scale accuracy
-            int gray = (int)(color.R * 0.3 + color.G * 0.59 + color.B * 0.11); // More accurate grayscale
+            int gray = (int)(color.R * 0.3 + color.G * 0.59 + color.B * 0.11); // Grayscale calculation
             int index = gray * (asciiChars.Length - 1) / 255;
             return asciiChars[index];
         }
 
-        //Colors used in the image 
+        // Method to get the closest console color to the pixel color
         static ConsoleColor ClosestConsoleColor(Color color)
         {
             (ConsoleColor, Color)[] consoleColors = {
-
                 (ConsoleColor.White, Color.White),
-                (ConsoleColor.Blue,Color.Blue),
-                 (ConsoleColor.Yellow,Color.Yellow)
+                (ConsoleColor.Red, Color.Red),
+                (ConsoleColor.Yellow, Color.Yellow)
             };
 
             ConsoleColor closestColor = ConsoleColor.White;
