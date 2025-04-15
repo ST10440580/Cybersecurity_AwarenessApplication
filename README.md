@@ -15,7 +15,7 @@ Namespace and Class Definition:
    - Display a banner in the console.
    - Display an image.
    -Prompt you to enter your name
-   - Activate the response system for user interaction.
+   - Then from there you can ask questions related to Phishing,Safe browsing and passwords.
    -To leave the program simply type in "exit" and the program will stop
 
 
