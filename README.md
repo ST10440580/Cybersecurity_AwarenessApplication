@@ -19,5 +19,14 @@ Namespace and Class Definition:
    -To leave the program simply type in "exit" and the program will stop
 
 
+Part 2:
+New feautures:
+-User can now tell the chatbot their favorite topic and the chatbot will give more information on that topic every 3 questions that the user asks.
+-Chatbot can now detetct sentiments such as "worried" "curious" "sad" and the chatbot will reply accordingly
+-and giving more details on a specific topic(passwords,safe browsing,phishing).
+-User will also get more than 1 answer to a question for a topic.
+
+
+
 ## Contact
 For any questions or suggestions, please open an issue or contact  [ST10440580@rcconnect.edu.za].
