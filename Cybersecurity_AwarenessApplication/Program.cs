@@ -26,6 +26,10 @@ namespace Cybersecurity_AwarenessApplication
 
             //call response system class
             new response_system() { };
+            new memory_management() { };
+
+         
+          
 
 
         }
